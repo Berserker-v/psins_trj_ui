@@ -12,10 +12,10 @@ function pos = trjspos(avp0, wat, ts, repeats)
 %         repeats - trajectory repeats using the same 'wat' parameter. 
 % Output: pos - trajectory position
 
-% global glv
+global glv
     if nargin<4, repeats = 1; end
     wat1 = repmat(wat, repeats, 1);
-    att = avp0(1:3); vn = avp0(4:6); pos = avp0(7:9);
+    att = avp0(1:3); vn = avp0(4:6); pos = avp0(7:9); pos(1:2) = pos(1:2)*glv.deg;
     eth = earth(pos, vn);
     len = fix(sum(wat1(:,1))/ts);
     avp = zeros(len,10);
